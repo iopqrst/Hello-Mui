@@ -7,7 +7,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
 		<link rel="stylesheet" href="css/mui.min.css">
 	</head>
 
@@ -23,11 +22,10 @@
 			var menu = null,
 				main = null;
 			var showMenu = false;
-			
 			mui.init({
-				swipeBack: false,
+				swipeBack: false, //启用/关闭右滑关闭功能
 				statusBarBackground: '#f7f7f7',
-				gestureConfig: {
+				gestureConfig: { // 配置需要监听的手势事件
 					doubletap: true
 				},
 				subpages: [{
@@ -40,7 +38,6 @@
 					}
 				}]
 			});
-			
 			mui.plusReady(function() {
 				if (mui.os.android) {
 					plus.screen.lockOrientation("portrait-primary");
@@ -67,45 +64,44 @@
 			 * 显示侧滑菜单
 			 */
 			function openMenu() {
-					if (!showMenu) {
-						//侧滑菜单处于隐藏状态，则立即显示出来；
-						menu.show('none', 0, function() {
-							//主窗体开始侧滑并显示遮罩
-							main.setStyle({
-								mask: 'rgba(0,0,0,0.4)',
-								left: '70%',
-								transition: {
-									duration: 150
-								}
-							});
-							showMenu = true;
-						});
-					}
-				}
-				/**
-				 * 关闭菜单
-				 */
-
-			function closeMenu() {
-					mui.toast('here , 原来这里是关闭');
-					if (showMenu) {
-						//关闭遮罩；
-						//主窗体开始侧滑；
+				if (!showMenu) {
+					//侧滑菜单处于隐藏状态，则立即显示出来；
+					menu.show('none', 0, function() {
+						//主窗体开始侧滑并显示遮罩
 						main.setStyle({
-							mask: 'none',
-							left: '0',
+							mask: 'rgba(0,0,0,0.4)',
+							left: '70%',
 							transition: {
-								duration: 200
+								duration: 150
 							}
 						});
-						showMenu = false;
-						//等动画结束后，隐藏菜单webview，节省资源；
-						setTimeout(function() {
-							menu.hide();
-						}, 300);
-					}
+						showMenu = true;
+					});
 				}
-				//点击左上角侧滑图标，打开侧滑菜单；
+			};
+			/**
+			 * 关闭菜单
+			 */
+			function closeMenu() {
+				mui.toast('here , 原来这里是关闭');
+				if (showMenu) {
+					//关闭遮罩；
+					//主窗体开始侧滑；
+					main.setStyle({
+						mask: 'none',
+						left: '0',
+						transition: {
+							duration: 200
+						}
+					});
+					showMenu = false;
+					//等动画结束后，隐藏菜单webview，节省资源；
+					setTimeout(function() {
+						menu.hide();
+					}, 300);
+				}
+			};
+			 //点击左上角侧滑图标，打开侧滑菜单；
 			document.querySelector('.mui-icon-bars').addEventListener('tap', function(e) {
 				if (showMenu) {
 					closeMenu();
@@ -126,13 +122,13 @@
 			window.addEventListener("menu:open", openMenu);
 			 //重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
 			mui.menu = function() {
-					if (showMenu) {
-						closeMenu();
-					} else {
-						openMenu();
-					}
+				if (showMenu) {
+					closeMenu();
+				} else {
+					openMenu();
 				}
-				//处理右上角关于图标的点击事件；
+			};
+			 //处理右上角关于图标的点击事件；
 			var subWebview = null,
 				template = null;
 			document.getElementById('info').addEventListener('tap', function() {
