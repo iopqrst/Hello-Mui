@@ -29,16 +29,16 @@
 				margin-left: -15px;
 				padding-right: 10px;
 			}
-			#info{
-		  		padding: 20px 10px ;
-		  	}
-		  	.des{
-		  		margin: .5em 0;
-		  	}
-		  	.des>li{
-		  		font-size: 14px;
+			#info {
+				padding: 20px 10px;
+			}
+			.des {
+				margin: .5em 0;
+			}
+			.des>li {
+				font-size: 14px;
 				color: #8f8f94;
-		  	}
+			}
 		</style>
 	</head>
 
@@ -66,9 +66,9 @@
 					<li>支持覆盖顶部状态栏</li>
 					<li>支持跨webview的遮罩</li>
 					<li>在有map等原生组件时，依然会显示在最顶层，不会被遮挡</li>
-				</ul>	
-				<p>另一方面，原生模式的actionsheet目前不支持自定义样式</p>	
-				
+				</ul>
+				<p>另一方面，原生模式的actionsheet目前不支持自定义样式</p>
+
 				<p>
 					<a id="picture-btn" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" style="padding: 5px 20px;">打开actionsheet</a>
 				</p>
@@ -87,16 +87,23 @@
 			//console.log('hidden', e.detail.id);//detail为当前popover元素
 		});
 		var info = document.getElementById("info");
-		document.getElementById("picture-btn").addEventListener('tap',function () {
-			var btnArray = [{title:"拍照或录像"},{title:"选取现有的"}];
-			plus.nativeUI.actionSheet( {
-				title:"选择照片",
-				cancel:"取消",
-				buttons:btnArray
-			}, function(e){
+		document.getElementById("picture-btn").addEventListener('tap', function() {
+			var btnArray = [{
+				title: "拍照或录像"
+			}, {
+				title: "选取现有的"
+			}, {
+				title: "Fucking change"
+			}];
+			
+			plus.nativeUI.actionSheet({
+				title: "选择照片",
+				cancel: "取消",
+				buttons: btnArray
+			}, function(e) {
 				var index = e.index;
 				var text = "你刚点击了\"";
-				switch (index){
+				switch (index) {
 					case 0:
 						text += "取消";
 						break;
@@ -106,19 +113,24 @@
 					case 2:
 						text += "选取现有的";
 						break;
+					default:
+						text += "自定义了";
 				}
-				info.innerHTML = text+"\"按钮";
-			} );
+				info.innerHTML = text + "\"按钮";
+			});
 		});
-		document.getElementById("delete-btn").addEventListener('tap',function () {
-			var btnArray = [{title:"删除信息",style:"destructive"}];
-			plus.nativeUI.actionSheet( {
-				cancel:"取消",
-				buttons:btnArray
-			}, function(e){
+		document.getElementById("delete-btn").addEventListener('tap', function() {
+			var btnArray = [{
+				title: "删除信息",
+				style: "destructive"
+			}];
+			plus.nativeUI.actionSheet({
+				cancel: "取消",
+				buttons: btnArray
+			}, function(e) {
 				var index = e.index;
 				var text = "你刚点击了\"";
-				switch (index){
+				switch (index) {
 					case 0:
 						text += "取消";
 						break;
@@ -126,8 +138,8 @@
 						text += "删除信息";
 						break;
 				}
-				info.innerHTML = text+"\"按钮";
-			} );
+				info.innerHTML = text + "\"按钮";
+			});
 		});
 	</script>
 

@@ -9,20 +9,22 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<link rel="stylesheet" href="../css/mui.min.css">
-		
+
 		<style>
-			html,body {
+			html,
+			body {
 				background-color: #efeff4;
 			}
-			header.mui-bar{
+			header.mui-bar {
 				display: none;
 			}
-			.mui-bar-nav~.mui-content{
+			.mui-bar-nav~.mui-content {
 				padding: 0;
 			}
 		</style>
-		
+
 	</head>
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -43,7 +45,7 @@
 									<label>Input</label>
 									<input type="text" class="mui-input-clear" placeholder="带清除按钮的输入框">
 								</div>
-		
+
 								<div class="mui-input-row">
 									<label>Input</label>
 									<input type="text" class="mui-input-speech mui-input-clear" placeholder="语音输入">
@@ -121,6 +123,103 @@
 						</div>
 					</li>
 				</ul>
+			</div>
+			<br />
+			<div class="mui-card">
+
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right">我的表单</a>
+						<div class="mui-collapse-content">
+							<form class="mui-input-group">
+								<div class="mui-input-row">
+									<label>用户名</label>
+									<input type="text" placeholder="请输入您的用户名">
+								</div>
+								<div class="mui-input-row">
+									<label>密码</label>
+									<input type="text" class="mui-input-clear" placeholder="请输入您的密码">
+								</div>
+								<div class="mui-input-row">
+									<label>Input</label>
+									<input type="text" class="mui-input-speech mui-input-clear" placeholder="语音输入">
+								</div>
+								<div class="mui-button-row">
+									<button class="mui-btn mui-btn-primary" type="button" onclick="return false;">确认</button>&nbsp;&nbsp;
+									<button class="mui-btn mui-btn-primary" type="button" onclick="return false;">取消</button>
+								</div>
+							</form>
+
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">1</li>
+								<li class="mui-table-view-cell">2</li>
+								<li class="mui-table-view-cell">3</li>
+								<li class="mui-table-view-cell">4</li>
+								<li class="mui-table-view-cell">5</li>
+								<li class="mui-table-view-cell">5</li>
+							</ul>
+						</div>
+					</li>
+
+					<li class="mui-table-view-cell mui-collapse">
+						<a href="#" class="mui-navigate-right">我的輪播圖</a>
+						<div class="mui-collapse-content">
+							<div class="mui-slider">
+								<div class="mui-slider-group mui-slider-loop">
+									<!--支持循环，需要重复图片节点-->
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="#">
+											<img src="../images/yuantiao.jpg" />
+										</a>
+									</div>
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="../images/yuantiao.jpg" />
+										</a>
+									</div>
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="../images/yuantiao.jpg" />
+										</a>
+									</div>
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="../images/yuantiao.jpg" />
+										</a>
+									</div>
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="../images/yuantiao.jpg" />
+										</a>
+									</div>
+									<!--支持循环，需要重复图片节点-->
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="#">
+											<img src="../images/yuantiao.jpg" />
+										</a>
+									</div>
+								</div>
+
+								<div class="mui-slider-indicator">
+									<div class="mui-indicator mui-active"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+								</div>
+							</div>
+						</div>
+					</li>
+					
+					<li class="mui-table-view-cell mui-collapse">
+						<a href="#" class="mui-navigate-right">文字排版</a>
+						<div class="mui-collapse-content">
+							<h3> h3 : 文字内容文字内容</h3>
+							<h1> h1 : 文字内容文字内容</h1>
+							<h5> h5 : 文字内容文字内容</h5>
+						</div>
+					</li>
+				</ul>
+
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>

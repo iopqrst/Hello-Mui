@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Hello MUI</title>
+		<title>Hello MUI222</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -24,20 +24,20 @@
 			}
 			span.mui-icon {
 				font-size: 14px;
-				color: #007aff;
+				color: #ff0000; /*定义图标颜色*/
 				margin-left: -15px;
 				padding-right: 10px;
 			}
-			#info{
-		  		padding: 20px 10px ;
-		  	}
-		  	.des{
-		  		margin: .5em 0;
-		  	}
-		  	.des>li{
-		  		font-size: 14px;
+			#info {
+				padding: 20px 10px;
+			}
+			.des {
+				margin: .5em 0;
+			}
+			.des>li {
+				font-size: 14px;
 				color: #8f8f94;
-		  	}
+			}
 		</style>
 	</head>
 
@@ -47,18 +47,24 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">Popovers with action sheet</h1>
 		</header>
+		
+		<!-- 底部栏，采用 tab 的方式实现-->
 		<nav class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item" href="#delete">
 				<span class="mui-icon mui-icon-trash"></span>
 			</a>
-			<a class="mui-tab-item" href="#">
+			<a class="mui-tab-item" href="#myself1">
+				<span class="mui-icon mui-icon-phone"></span>
 			</a>
 			<a class="mui-tab-item" href="#">
+				<span class="mui-icon mui-icon-chat"></span>
 			</a>
 			<a class="mui-tab-item" href="#forward">
 				<span class="mui-icon mui-icon-undo"></span>
 			</a>
 		</nav>
+		
+		<!-- 静态内容部分 -->
 		<div class="mui-content">
 			<div class="mui-content-padded">
 				<p>actionsheet一般从底部弹出，显示一系列可选择的操作按钮，供用户选择； actionSheet可从任意位置触发， 点击本页面左下角
@@ -69,9 +75,11 @@
 					<a href="#picture" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" style="padding: 5px 20px;">打开actionsheet</a>
 				</p>
 				<p>本页面为H5模式的actionsheet演示示例，该模式具有如下优点：</p>
-					<ul class="des"><li>可通过css自由定制展现样式</li></ul>
-					
-				<p>另一方面，H5模式的actionsheet也具备如下缺点：</p>	
+				<ul class="des">
+					<li>可通过css自由定制展现样式</li>
+				</ul>
+
+				<p>另一方面，H5模式的actionsheet也具备如下缺点：</p>
 				<ul class="des">
 					<li>不支持覆盖顶部状态栏</li>
 					<li>不支持跨webview的遮罩</li>
@@ -80,8 +88,6 @@
 				<p id="info"></p>
 			</div>
 		</div>
-
-
 
 		<div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
@@ -95,6 +101,7 @@
 				</li>
 			</ul>
 		</div>
+		
 		<div id="forward" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
@@ -113,6 +120,7 @@
 				</li>
 			</ul>
 		</div>
+		
 		<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
@@ -128,6 +136,19 @@
 				</li>
 			</ul>
 		</div>
+		
+		<div id="myself1" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#" style="color: #FF3B30;">我自己定义的</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#delete"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
 
 	</body>
 	<script src="../js/mui.min.js"></script>
@@ -135,23 +156,24 @@
 	<script>
 		mui.init();
 		mui('body').on('shown', '.mui-popover', function(e) {
-			//console.log('shown', e.detail.id);//detail为当前popover元素
+			console.log('shown', e.detail.id);//detail为当前popover元素
 		});
 		mui('body').on('hidden', '.mui-popover', function(e) {
-			//console.log('hidden', e.detail.id);//detail为当前popover元素
+			console.log('hidden', e.detail.id);//detail为当前popover元素
 		});
 		var info = document.getElementById("info");
-		mui('body').on('tap','.mui-popover-action li>a',function () {
-			var a = this,parent;
-			//根据点击按钮，反推当前是哪个actionsheet
-			for(parent=a.parentNode;parent!=document.body;parent=parent.parentNode){
-				if(parent.classList.contains('mui-popover-action')){
+		mui('body').on('tap', '.mui-popover-action li>a', function() {
+			var a = this,
+				parent;
+			//根据点击按钮，反推当前是哪个actionsheet （循环向上找，直到找到父级包含popover-action样式的元素）
+			for (parent = a.parentNode; parent != document.body; parent = parent.parentNode) {
+				if (parent.classList.contains('mui-popover-action')) {
 					break;
 				}
 			}
 			//关闭actionsheet
-			mui('#'+parent.id).popover('toggle');
-			info.innerHTML = "你刚点击了\""+a.innerHTML+"\"按钮";
+			mui('#' + parent.id).popover('toggle');
+			info.innerHTML = "你刚点击了\"" + a.innerHTML + "\"按钮";
 		})
 	</script>
 
