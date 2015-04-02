@@ -32,8 +32,11 @@ window.addEventListener('toggle', function(event) {
 		var isActive = event.detail.isActive;
 		var table = document.querySelector('.mui-table-view');
 		var card = document.querySelector('.mui-card');
+		
+		console.info('current status = active ? ' + isActive);
+		
 		if (isActive) {
-			card.appendChild(table);
+			card.appendChild(table); 
 			card.style.display = '';
 		} else {
 			var content = document.querySelector('.mui-content');

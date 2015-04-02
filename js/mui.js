@@ -385,14 +385,14 @@ var mui = (function(document, undefined) {
  * @returns {undefined}
  */
 (function($) {
-    function detect(ua) {
-        this.os = this.os || {};
-        var plus = ua.match(/Html5Plus/i);//TODO 5\+Browser?
-        if (plus) {
-            this.os.plus = true;
-        }
-    }
-    detect.call($, navigator.userAgent);
+	function detect(ua) {
+		this.os = this.os || {};
+		var plus = ua.match(/Html5Plus/i); //TODO 5\+Browser?
+		if (plus) {
+			this.os.plus = true;
+		}
+	}
+	detect.call($, navigator.userAgent);
 })(mui);
 
 /**
@@ -502,49 +502,50 @@ var mui = (function(document, undefined) {
  * @returns {undefined}
  */
 (function(document) {
-    if (!("classList" in document.documentElement) && Object.defineProperty && typeof HTMLElement !== 'undefined') {
+	if (!("classList" in document.documentElement) && Object.defineProperty && typeof HTMLElement !== 'undefined') {
 
-        Object.defineProperty(HTMLElement.prototype, 'classList', {
-            get: function() {
-                var self = this;
-                function update(fn) {
-                    return function(value) {
-                        var classes = self.className.split(/\s+/),
-                                index = classes.indexOf(value);
+		Object.defineProperty(HTMLElement.prototype, 'classList', {
+			get: function() {
+				var self = this;
 
-                        fn(classes, index, value);
-                        self.className = classes.join(" ");
-                    };
-                }
+				function update(fn) {
+					return function(value) {
+						var classes = self.className.split(/\s+/),
+							index = classes.indexOf(value);
 
-                var ret = {
-                    add: update(function(classes, index, value) {
-                        ~index || classes.push(value);
-                    }),
-                    remove: update(function(classes, index) {
-                        ~index && classes.splice(index, 1);
-                    }),
-                    toggle: update(function(classes, index, value) {
-                        ~index ? classes.splice(index, 1) : classes.push(value);
-                    }),
-                    contains: function(value) {
-                        return !!~self.className.split(/\s+/).indexOf(value);
-                    },
-                    item: function(i) {
-                        return self.className.split(/\s+/)[i] || null;
-                    }
-                };
+						fn(classes, index, value);
+						self.className = classes.join(" ");
+					};
+				}
 
-                Object.defineProperty(ret, 'length', {
-                    get: function() {
-                        return self.className.split(/\s+/).length;
-                    }
-                });
+				var ret = {
+					add: update(function(classes, index, value) {
+						~index || classes.push(value);
+					}),
+					remove: update(function(classes, index) {
+						~index && classes.splice(index, 1);
+					}),
+					toggle: update(function(classes, index, value) {
+						~index ? classes.splice(index, 1) : classes.push(value);
+					}),
+					contains: function(value) {
+						return !!~self.className.split(/\s+/).indexOf(value);
+					},
+					item: function(i) {
+						return self.className.split(/\s+/)[i] || null;
+					}
+				};
 
-                return ret;
-            }
-        });
-    }
+				Object.defineProperty(ret, 'length', {
+					get: function() {
+						return self.className.split(/\s+/).length;
+					}
+				});
+
+				return ret;
+			}
+		});
+	}
 })(document);
 
 /**
@@ -553,27 +554,27 @@ var mui = (function(document, undefined) {
  * @returns {undefined}
  */
 (function(window) {
-    var lastTime = 0;
-    if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = window.webkitRequestAnimationFrame;
-        window.cancelAnimationFrame = window.webkitCancelAnimationFrame || window.webkitCancelRequestAnimationFrame;
-    }
-    if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = function(callback, element) {
-            var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
-            var id = window.setTimeout(function() {
-                callback(currTime + timeToCall);
-            }, timeToCall);
-            lastTime = currTime + timeToCall;
-            return id;
-        };
-    }
-    if (!window.cancelAnimationFrame) {
-        window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
-        };
-    }
+	var lastTime = 0;
+	if (!window.requestAnimationFrame) {
+		window.requestAnimationFrame = window.webkitRequestAnimationFrame;
+		window.cancelAnimationFrame = window.webkitCancelAnimationFrame || window.webkitCancelRequestAnimationFrame;
+	}
+	if (!window.requestAnimationFrame) {
+		window.requestAnimationFrame = function(callback, element) {
+			var currTime = new Date().getTime();
+			var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+			var id = window.setTimeout(function() {
+				callback(currTime + timeToCall);
+			}, timeToCall);
+			lastTime = currTime + timeToCall;
+			return id;
+		};
+	}
+	if (!window.cancelAnimationFrame) {
+		window.cancelAnimationFrame = function(id) {
+			clearTimeout(id);
+		};
+	}
 }(window));
 /**
  * fastclick(only for radio,checkbox)
@@ -718,13 +719,13 @@ var mui = (function(document, undefined) {
 		return classSelector.replace(/\./g, $.classSelectorPrefix);
 	};
 	/**
-         * 返回正确的eventName
-         * @param {type} event
-         * @param {type} module
-         * @returns {String}
-         */
+	 * 返回正确的eventName
+	 * @param {type} event
+	 * @param {type} module
+	 * @returns {String}
+	 */
 	$.eventName = function(event, module) {
-		return event + ($.namespace ? ('.' + $.namespace) : '') + ( module ? ('.' + module) : '');
+		return event + ($.namespace ? ('.' + $.namespace) : '') + (module ? ('.' + module) : '');
 	};
 })(mui);
 
@@ -1682,9 +1683,9 @@ var mui = (function(document, undefined) {
 					if ($.os.ios && $.options.statusBarBackground) {
 						plus.navigator.setStatusBarBackground($.options.statusBarBackground);
 					}
-					if($.os.android&&parseFloat($.os.version) < 4.4){
+					if ($.os.android && parseFloat($.os.version) < 4.4) {
 						//解决Android平台4.4版本以下，resume后，父窗体标题延迟渲染的问题；
-						if(plus.webview.currentWebview().parent()==null){
+						if (plus.webview.currentWebview().parent() == null) {
 							document.addEventListener("resume", function() {
 								var body = document.body;
 								body.style.display = 'none';
@@ -1824,7 +1825,7 @@ var mui = (function(document, undefined) {
 			var parent = wobj.parent();
 			if (parent) {
 				parent.evalJS('mui&&mui.back();');
-			}else{
+			} else {
 				wobj.canBack(function(e) {
 					//by chb 暂时注释，在碰到类似popover之类的锚点的时候，需多次点击才能返回；
 					if (e.canBack) { //webview history back
@@ -1854,7 +1855,7 @@ var mui = (function(document, undefined) {
 	$.menu = function() {
 		var menu = document.querySelector('.mui-action-menu');
 		if (menu) {
-			$.trigger(menu, 'touchstart');//临时处理menu无touchstart的话，找不到当前targets的问题
+			$.trigger(menu, 'touchstart'); //临时处理menu无touchstart的话，找不到当前targets的问题
 			$.trigger(menu, 'tap');
 		} else { //执行父窗口的menu
 			if (window.plus) {
@@ -2241,18 +2242,18 @@ var mui = (function(document, undefined) {
 (function($, window, undefined) {
 	$.offset = function(element) {
 		var box = {
-			top : 0,
-			left : 0
+			top: 0,
+			left: 0
 		};
-		if ( typeof element.getBoundingClientRect !== undefined) {
+		if (typeof element.getBoundingClientRect !== undefined) {
 			box = element.getBoundingClientRect();
 		}
 		return {
-			top : box.top + window.pageYOffset - element.clientTop,
-			left : box.left + window.pageXOffset - element.clientLeft
+			top: box.top + window.pageYOffset - element.clientTop,
+			left: box.left + window.pageXOffset - element.clientLeft
 		};
 	};
-})(mui, window); 
+})(mui, window);
 /**
  * mui animation
  */
@@ -2320,6 +2321,7 @@ var mui = (function(document, undefined) {
 				})(name, prop[name]) :
 				prop[name];
 		}
+
 		function Class() {
 			if (!initializing && this.init)
 				this.init.apply(this, arguments);
@@ -5666,23 +5668,23 @@ var mui = (function(document, undefined) {
 	/**
 	 * 警告消息框
 	 */
-	$.alert = function(message,title,btnValue,callback) {
+	$.alert = function(message, title, btnValue, callback) {
 		if ($.os.plus) {
-			if(typeof message === undefined){
+			if (typeof message === undefined) {
 				return;
-			}else{
-				if(typeof title ==='function'){
+			} else {
+				if (typeof title === 'function') {
 					callback = title;
 					title = null;
 					btnValue = '确定';
-				}else if(typeof btnValue ==='function'){
+				} else if (typeof btnValue === 'function') {
 					callback = btnValue;
 					btnValue = null;
 				}
-				plus.nativeUI.alert(message,callback,title,btnValue);
+				plus.nativeUI.alert(message, callback, title, btnValue);
 			}
 
-		}else{
+		} else {
 			//TODO H5版本
 			window.alert(message);
 		}
@@ -5693,23 +5695,23 @@ var mui = (function(document, undefined) {
 	/**
 	 * 确认消息框
 	 */
-	$.confirm = function(message,title,btnArray,callback) {
+	$.confirm = function(message, title, btnArray, callback) {
 		if ($.os.plus) {
-			if(typeof message === undefined){
+			if (typeof message === undefined) {
 				return;
-			}else{
-				if(typeof title ==='function'){
+			} else {
+				if (typeof title === 'function') {
 					callback = title;
 					title = null;
 					btnArray = null;
-				}else if(typeof btnArray ==='function'){
+				} else if (typeof btnArray === 'function') {
 					callback = btnArray;
 					btnArray = null;
 				}
-				plus.nativeUI.confirm(message,callback,title,btnArray);
+				plus.nativeUI.confirm(message, callback, title, btnArray);
 			}
 
-		}else{
+		} else {
 			//TODO H5版本
 			window.confirm(message);
 		}
@@ -5720,29 +5722,29 @@ var mui = (function(document, undefined) {
 	/**
 	 * 输入对话框
 	 */
-	$.prompt = function(text,defaultText,title,btnArray,callback) {
+	$.prompt = function(text, defaultText, title, btnArray, callback) {
 		if ($.os.plus) {
-			if(typeof message === undefined){
+			if (typeof message === undefined) {
 				return;
-			}else{
+			} else {
 
-				if(typeof defaultText ==='function'){
+				if (typeof defaultText === 'function') {
 					callback = defaultText;
 					defaultText = null;
 					title = null;
 					btnArray = null;
-				}else if(typeof title === 'function'){
+				} else if (typeof title === 'function') {
 					callback = title;
 					title = null;
 					btnArray = null;
-				}else if(typeof btnArray ==='function'){
+				} else if (typeof btnArray === 'function') {
 					callback = btnArray;
 					btnArray = null;
 				}
-				plus.nativeUI.prompt(text,callback,title,defaultText,btnArray);
+				plus.nativeUI.prompt(text, callback, title, defaultText, btnArray);
 			}
 
-		}else{
+		} else {
 			//TODO H5版本
 			window.prompt(text);
 		}
@@ -5754,17 +5756,19 @@ var mui = (function(document, undefined) {
 	 * 自动消失提示框
 	 */
 	$.toast = function(message) {
-		if($.os.plus){
+		if ($.os.plus) {
 			//默认显示在底部；
-			plus.nativeUI.toast(message,{verticalAlign:'bottom'});
-		}else{
+			plus.nativeUI.toast(message, {
+				verticalAlign: 'bottom'
+			});
+		} else {
 			var toast = document.createElement('div');
 			toast.classList.add('mui-toast-container');
-			toast.innerHTML = '<div class="'+'mui-toast-message'+'">'+message+'</div>';
+			toast.innerHTML = '<div class="' + 'mui-toast-message' + '">' + message + '</div>';
 			document.body.appendChild(toast);
-			setTimeout(function(){
-		  		document.body.removeChild(toast);
-			},2000);
+			setTimeout(function() {
+				document.body.removeChild(toast);
+			}, 2000);
 		}
 	};
 

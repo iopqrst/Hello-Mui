@@ -10,17 +10,19 @@
 
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<style>
-			html,body {
+			html,
+			body {
 				background-color: #efeff4;
 			}
-			header.mui-bar{
+			header.mui-bar {
 				display: none;
 			}
-			.mui-bar-nav~.mui-content{
+			.mui-bar-nav~.mui-content {
 				padding: 0;
 			}
 		</style>
 	</head>
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -79,5 +81,8 @@
 	<script src="../js/app.js"></script>
 	<script>
 		mui.init();
+		
+		// 方法是在app.js 中实现的，默认情况下mui-table-view是封装在div.mui-card下，而该中情况就是包含圆角的情况
 	</script>
+
 </html>

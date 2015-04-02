@@ -10,23 +10,25 @@
 
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<style>
-			html,body {
+			html,
+			body {
 				background-color: #efeff4;
 			}
-			header.mui-bar{
+			header.mui-bar {
 				display: none;
 			}
-			.mui-bar-nav~.mui-content{
+			.mui-bar-nav~.mui-content {
 				padding: 0;
 			}
 		</style>
 	</head>
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">二级列表</h1>
 		</header>
-		
+
 		<div class="mui-content">
 			<div class="mui-card">
 				<ul class="mui-table-view mui-table-view-chevron">
@@ -35,7 +37,8 @@
 							<div class="mui-switch-handle"></div>
 						</div>
 					</li>
-					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">产品</a>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">产品</a>
 						<ul class="mui-table-view mui-table-view-chevron">
 							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">iOS</a>
 							</li>
@@ -72,4 +75,5 @@
 	<script>
 		mui.init();
 	</script>
+
 </html>
