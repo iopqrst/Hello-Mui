@@ -40,6 +40,10 @@
 				<span class="mui-tab-label">设置</span>
 			</a>
 		</nav>
+		
+		
+		
+		
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/app.js"></script>
 		<script type="text/javascript" charset="utf-8">
@@ -51,6 +55,7 @@
 			 //创建子页面，首个选项卡页面显示，其它均隐藏；
 			mui.plusReady(function() {
 				var self = plus.webview.currentWebview();
+				console.info('currentWebview = ' + self);
 				for (var i = 0; i < 4; i++) {
 					var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
 					if (i > 0) {
