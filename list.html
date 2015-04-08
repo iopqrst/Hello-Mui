@@ -402,6 +402,8 @@
 				getTemplate('default', 'examples/template.html');
 			};
 			mui.plusReady(function() {
+				//hzq: 设置list页面不出现滚动条
+				//plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
 				//初始化模板
 				initTemplates(); //预加载所有模板	
 				//关闭splash页面； （关闭初始页面）

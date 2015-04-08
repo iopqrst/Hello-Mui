@@ -22,6 +22,12 @@
 			back();
 		}
 	}
+	
+	// 全局设置去除滚动条
+	$.plusReady(function() {
+		//hzq: 设置list页面不出现滚动条
+		plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
+	});
 })(mui);
 
 /**
